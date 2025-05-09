@@ -124,8 +124,9 @@ body {
 
 #game-container {
     text-align: left; /* Align text to the left to match chatbox */
-    margin: 30vh auto 0;
-    max-height: none; /* Remove any height restriction */
+    margin: 40vh auto 0; /* Removed max-height to prevent cutting content */
+    padding-bottom: 60px; /* Add extra padding to ensure the button is visible */
+    overflow-y: auto; /* Allow vertical scrolling */
 }
 
 button, #next-button {
@@ -195,6 +196,26 @@ button:hover, #next-button:hover {
     background: #218838;
 }
 
+#submit-drinks {
+    position: relative; /* Change to relative positioning */
+    margin-top: 20px; /* Add spacing from other elements */
+    bottom: auto; /* Remove fixed positioning */
+    left: auto;
+    transform: none;
+    background-color: #007bff; /* Blue button background */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#submit-drinks:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     #chat-box {
@@ -204,7 +225,6 @@ button:hover, #next-button:hover {
 
     #game-container {
         margin: 35vh auto 0;
-        max-height: 60vh;
     }
 
     #chat-content {
@@ -225,7 +245,6 @@ button:hover, #next-button:hover {
 
     #game-container {
         margin: 40vh auto 0;
-        max-height: 55vh;
     }
 
     #chat-content {

@@ -192,10 +192,8 @@ function showServingScreen() {
     // Hide the chatbox to make space for the serving screen
     chatBox.style.display = 'none';
 
-    // Position the game container at the top and ensure it fits the screen
+    // Position the game container at the top
     gameContainer.style.marginTop = '0';
-    gameContainer.style.height = '100vh';
-    gameContainer.style.overflowY = 'hidden';
 
     gameContainer.innerHTML = '<h1>Prepara las bebidas</h1>';
     const drinkButtons = drinks.map(drink => `<button class="serve-button" data-drink="${drink}">${drink}</button>`).join('');
@@ -253,7 +251,9 @@ function resetGame() {
     chatContent.innerHTML = '';
     startButton.style.display = 'block';
     chatBox.style.display = 'block'; // Show the chatbox again
-    gameContainer.style.marginTop = '30vh'; // Reset the game container position
+    gameContainer.style.marginTop = '40vh'; // Reset the game container position
+    gameContainer.style.height = 'auto'; // Reset height to default
+    gameContainer.style.overflowY = 'auto'; // Ensure scrolling is enabled if needed
 
     // Reassign drinks and start the game from showFriendDrink
     assignRandomDrinks();
