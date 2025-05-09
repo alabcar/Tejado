@@ -38,9 +38,7 @@ let servedDrinks = [];
 let currentFriendIndex = 0;
 
 const chatMessages = [
-    "La vaca que ríe: ‎Los mensajes y las llamadas están cifrados de extremo a extremo. Solo las personas en este chat pueden leerlos, escucharlos o compartirlos.",
     "Ana: ‎Ana creó el grupo “Finde Málaga ”.",
-    "La vaca que ríe: ‎Ana te añadió.",
     "Luigi: ‎Ana añadió a Luigi.",
     "Ana: Para decidir... y después seguimos en el otro",
     "Xoana: Venga lo veo ahora",
@@ -105,20 +103,23 @@ function showRandomChatMessage(button) {
     }, 2000);
 }
 
-// Attach chat message logic to drink buttons
-function attachDrinkButtonLogic() {
-    document.querySelectorAll('.drink-button').forEach(button => {
-        button.addEventListener('click', () => showRandomChatMessage(button));
-    });
-}
-
 function startInfiniteChat() {
-    setInterval(() => {
+    if (gameState.gameInterval) {
+        clearInterval(gameState.gameInterval); // Clear any existing interval to avoid duplicates
+    }
+
+    gameState.gameInterval = setInterval(() => {
         const randomMessage = chatMessages[Math.floor(Math.random() * chatMessages.length)];
         const messageElement = document.createElement('p');
         messageElement.textContent = randomMessage;
         chatContent.appendChild(messageElement);
         chatContent.scrollTop = chatContent.scrollHeight;
+
+        // Ensure only four messages are displayed at a time
+        const chatMessagesDisplayed = chatContent.querySelectorAll('p');
+        if (chatMessagesDisplayed.length > 3) {
+            chatContent.removeChild(chatMessagesDisplayed[0]);
+        }
     }, 2000);
 }
 
@@ -160,6 +161,31 @@ function showServingScreen() {
     document.getElementById('submit-drinks').addEventListener('click', checkResults);
 }
 
+function resetGame() {
+    // Reset game state variables
+    gameState.selectedCharacter = null;
+    gameState.score = 0;
+    gameState.playerPosition = 50;
+    if (gameState.gameInterval) {
+        clearInterval(gameState.gameInterval); // Stop any ongoing intervals
+        gameState.gameInterval = null;
+    }
+    servedDrinks = [];
+    assignedDrinks = [];
+    currentFriendIndex = 0;
+
+    // Reset UI elements
+    gameContainer.innerHTML = '';
+    chatContent.innerHTML = '';
+    startButton.style.display = 'none';
+    chatBox.style.display = 'block';
+
+    // Reassign drinks and start the game from showFriendDrink
+    assignRandomDrinks();
+    showFriendDrink();
+    startInfiniteChat();
+}
+
 function checkResults() {
     let score = 0;
     assignedDrinks.forEach((assignment, index) => {
@@ -169,6 +195,9 @@ function checkResults() {
     });
 
     gameContainer.innerHTML = `<h1>Resultados</h1><p>Has acertado ${score} de ${friends.length} bebidas.</p>`;
+    gameContainer.innerHTML += '<button id="play-again-button">Volver a la mesa</button>';
+
+    document.getElementById('play-again-button').addEventListener('click', resetGame);
 }
 
 startButton.addEventListener('click', () => {
@@ -180,6 +209,4 @@ startButton.addEventListener('click', () => {
 });
 
 // Initialize everything on window load
-window.onload = () => {
-    attachDrinkButtonLogic();
-};
+window.onload = () => {};
