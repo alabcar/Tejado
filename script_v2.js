@@ -189,6 +189,14 @@ function showFriendDrink() {
 }
 
 function showServingScreen() {
+    // Hide the chatbox to make space for the serving screen
+    chatBox.style.display = 'none';
+
+    // Position the game container at the top and ensure it fits the screen
+    gameContainer.style.marginTop = '0';
+    gameContainer.style.height = '100vh';
+    gameContainer.style.overflowY = 'hidden';
+
     gameContainer.innerHTML = '<h1>Prepara las bebidas</h1>';
     const drinkButtons = drinks.map(drink => `<button class="serve-button" data-drink="${drink}">${drink}</button>`).join('');
     gameContainer.innerHTML += `<p>Haz clic en las bebidas para prepararlas:</p>${drinkButtons}`;
@@ -243,8 +251,9 @@ function resetGame() {
     // Reset UI elements
     gameContainer.innerHTML = '';
     chatContent.innerHTML = '';
-    startButton.style.display = 'none';
-    chatBox.style.display = 'block';
+    startButton.style.display = 'block';
+    chatBox.style.display = 'block'; // Show the chatbox again
+    gameContainer.style.marginTop = '30vh'; // Reset the game container position
 
     // Reassign drinks and start the game from showFriendDrink
     assignRandomDrinks();
@@ -266,7 +275,12 @@ function checkResults() {
         }
     });
 
-    gameContainer.innerHTML = `<h1>Resultados</h1><p>Has acertado ${score} de ${friends.length} bebidas.</p>`;
+    if (score === friends.length) {
+        gameContainer.innerHTML = `<h1>Enhorabuena, ¡has acertado! ¡Chupitos para todos!</h1>`;
+    } else {
+        gameContainer.innerHTML = `<h1>Resultados</h1><p>Has acertado ${score} de ${friends.length} bebidas.</p>`;
+    }
+
     gameContainer.innerHTML += '<button id="play-again-button">Volver a la mesa</button>';
 
     document.getElementById('play-again-button').addEventListener('click', resetGame);

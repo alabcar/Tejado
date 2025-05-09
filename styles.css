@@ -11,6 +11,7 @@ body {
     justify-content: flex-start;
     height: 100vh;
     overflow-x: hidden;
+    font-size: 18px; /* Increase base font size for better readability on mobile */
 }
 
 #character-selection, #game, #game-over {
@@ -69,12 +70,13 @@ body {
     color: #00ff00; /* Green text */
     background-color: #000000; /* Black background */
     border: 2px solid #00ff00; /* Unified green border for all containers */
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    max-width: 600px;
+    width: 90%; /* Use 90% of the screen width */
+    max-width: 800px; /* Set a larger maximum width for better mobile experience */
     margin: 0 auto;
+    padding: 20px; /* Increase padding for better spacing */
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
 }
 
@@ -94,8 +96,8 @@ body {
 }
 
 #chat-content, #game-container p {
-    font-size: 1em;
-    line-height: 1.5;
+    font-size: 1.2em; /* Slightly larger text for better readability */
+    line-height: 1.6; /* Improve line spacing */
     margin: 5px 0;
     word-wrap: break-word;
 }
@@ -105,15 +107,15 @@ body {
 }
 
 #chat-content p, #game-container p {
-    font-size: 1em; /* Unified font size for chatbox and game */
-    line-height: 1.5;
+    font-size: 1.2em; /* Slightly larger text for better readability */
+    line-height: 1.6; /* Improve line spacing */
     margin: 5px 0;
     word-wrap: break-word;
 }
 
 #game-container p {
-    font-size: 1em; /* Match font size with chatbox */
-    line-height: 1.5;
+    font-size: 1.2em; /* Slightly larger text for better readability */
+    line-height: 1.6; /* Improve line spacing */
     color: #00ff00; /* Match color with chatbox */
     font-family: 'Courier New', monospace; /* Match font family with chatbox */
     word-wrap: break-word;
@@ -123,22 +125,15 @@ body {
 #game-container {
     text-align: left; /* Align text to the left to match chatbox */
     margin: 30vh auto 0;
-    max-height: 65vh;
-    padding: 15px;
-    box-sizing: border-box;
+    max-height: none; /* Remove any height restriction */
     background-color: #000000;
     border: 1px solid #dddddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    width: 100%;
-    max-width: 600px;
 }
 
 button, #next-button {
     font-family: 'Courier New', monospace; /* Unified button font */
-    padding: 10px 15px;
-    font-size: 16px;
+    padding: 12px 20px; /* Increase button padding */
+    font-size: 18px; /* Increase button font size */
     border: none;
     border-radius: 5px;
     background-color: #00aaff;
@@ -154,8 +149,8 @@ button:hover, #next-button:hover {
 #next-button {
     display: block; /* Ensure the button is on its own line */
     margin: 20px auto; /* Center the button and add spacing */
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 12px 20px; /* Increase button padding */
+    font-size: 18px; /* Increase button font size */
     border: none;
     border-radius: 5px;
     background-color: #00aaff;
