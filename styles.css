@@ -234,6 +234,7 @@ button:hover, #next-button:hover {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     #chat-box {
+        
         height: 30vh;
         font-size: 14px;
     }
