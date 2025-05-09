@@ -149,12 +149,35 @@ function showServingScreen() {
     gameContainer.innerHTML = '<h1>Prepara las bebidas</h1>';
     const drinkButtons = drinks.map(drink => `<button class="serve-button" data-drink="${drink}">${drink}</button>`).join('');
     gameContainer.innerHTML += `<p>Haz clic en las bebidas para prepararlas:</p>${drinkButtons}`;
+    gameContainer.innerHTML += '<div id="selected-drinks"><h2>Bebidas seleccionadas:</h2><ul id="drink-list"></ul></div>';
     gameContainer.innerHTML += '<button id="submit-drinks">Servir bebidas</button>';
+
+    let maxDrinks = assignedDrinks.length;
 
     document.querySelectorAll('.serve-button').forEach(button => {
         button.addEventListener('click', (e) => {
-            const selectedDrink = e.target.getAttribute('data-drink');
-            servedDrinks.push(selectedDrink);
+            if (servedDrinks.length < maxDrinks) {
+                const selectedDrink = e.target.getAttribute('data-drink');
+                servedDrinks.push(selectedDrink);
+
+                // Update the selected drinks list
+                const drinkList = document.getElementById('drink-list');
+                const existingItem = Array.from(drinkList.children).find(item => item.dataset.drink === selectedDrink);
+
+                if (existingItem) {
+                    const count = parseInt(existingItem.dataset.count, 10) + 1;
+                    existingItem.dataset.count = count;
+                    existingItem.textContent = `${selectedDrink} x${count}`;
+                } else {
+                    const listItem = document.createElement('li');
+                    listItem.dataset.drink = selectedDrink;
+                    listItem.dataset.count = 1;
+                    listItem.textContent = `${selectedDrink} x1`;
+                    drinkList.appendChild(listItem);
+                }
+            } else {
+                alert('No puedes preparar más bebidas de las pedidas.');
+            }
         });
     });
 
@@ -188,9 +211,15 @@ function resetGame() {
 
 function checkResults() {
     let score = 0;
-    assignedDrinks.forEach((assignment, index) => {
-        if (servedDrinks[index] === assignment.drink) {
+
+    // Create a copy of assignedDrinks to track matches
+    const assignedDrinksCopy = [...assignedDrinks];
+
+    servedDrinks.forEach(servedDrink => {
+        const matchIndex = assignedDrinksCopy.findIndex(assignment => assignment.drink === servedDrink);
+        if (matchIndex !== -1) {
             score++;
+            assignedDrinksCopy.splice(matchIndex, 1); // Remove matched drink to avoid duplicate scoring
         }
     });
 
