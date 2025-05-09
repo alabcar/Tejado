@@ -1,14 +1,16 @@
+/* General styling for the game */
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Courier New', monospace; /* Unified font for retro style */
+    background-color: #000000; /* Black background for retro theme */
+    color: #00ff00; /* Green text for retro look */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 #character-selection, #game, #game-over {
@@ -62,57 +64,59 @@ body {
     margin-bottom: 10px;
 }
 
-/* Updated chatbox styles to move it to the top and give it a retro pixelated style */
+#chat-box, #game-container {
+    font-family: 'Courier New', monospace; /* Unified font */
+    color: #00ff00; /* Green text */
+    background-color: #000000; /* Black background */
+    border: 2px solid #00ff00; /* Green border */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
 #chat-box {
-    display: flex;
-    flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 30vh; /* Adjusted height */
-    background-color: #000000; /* Black background for retro look */
-    border-bottom: 4px solid #00ff00; /* Green border for retro style */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
+    right: 0;
     z-index: 1000;
-    font-family: 'Press Start 2P', cursive; /* Retro pixel font */
-    color: #00ff00; /* Green text for retro look */
+    height: 25vh;
 }
 
-#chat-box h2 {
-    margin: 0;
-    padding: 10px;
-    font-size: 14px;
-    background-color: #000000;
-    color: #00ff00;
+#chat-box h2, #game-container h1 {
+    font-size: 1.5em;
     text-align: center;
-    border-bottom: 2px solid #00ff00;
+    margin-bottom: 10px;
+}
+
+#chat-content, #game-container p {
+    font-size: 1em;
+    line-height: 1.5;
+    margin: 5px 0;
+    word-wrap: break-word;
 }
 
 #chat-content {
     padding: 10px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: #00ff00;
-    font-family: 'Press Start 2P', cursive;
 }
 
-#chat-content p {
+#chat-content p, #game-container p {
     margin: 5px 0;
     font-size: 1.2em; /* Increase font size for chat messages */
 }
 
 #game-container {
+    margin: 30vh auto 0;
+    max-height: 65vh;
     text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #00ff00;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-button {
+button, #next-button {
+    font-family: 'Courier New', monospace; /* Unified button font */
     padding: 10px 15px;
     font-size: 16px;
     border: none;
@@ -123,7 +127,7 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+button:hover, #next-button:hover {
     background-color: #0088cc;
 }
 
@@ -165,8 +169,13 @@ button:hover {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     #chat-box {
-        max-height: 40vh;
+        height: 30vh;
         font-size: 14px;
+    }
+
+    #game-container {
+        margin: 35vh auto 0;
+        max-height: 60vh;
     }
 
     #chat-content {
@@ -181,7 +190,13 @@ button:hover {
 
 @media (max-width: 480px) {
     #chat-box {
-        max-height: 35vh;
+        height: 35vh;
+        font-size: 12px;
+    }
+
+    #game-container {
+        margin: 40vh auto 0;
+        max-height: 55vh;
     }
 
     #chat-content {

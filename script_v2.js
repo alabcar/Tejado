@@ -133,7 +133,7 @@ function assignRandomDrinks() {
 function showFriendDrink() {
     if (currentFriendIndex < assignedDrinks.length) {
         const { friend, drink } = assignedDrinks[currentFriendIndex];
-        gameContainer.innerHTML = `<h1>${friend} ha elegido:</h1><p>${drink}</p>`;
+        gameContainer.innerHTML = `<h1>${friend}:</h1><p>${drink}</p>`;
         gameContainer.innerHTML += '<button id="next-button">Siguiente</button>';
 
         document.getElementById('next-button').addEventListener('click', () => {
