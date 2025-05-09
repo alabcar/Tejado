@@ -216,6 +216,21 @@ button:hover, #next-button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
 
+#start-button {
+    font-size: 1.5em; /* Increase font size for better readability */
+    padding: 15px 30px; /* Increase padding to make the button more prominent */
+    background-color: #4caf50; /* Green for emphasis */
+    color: #ffffff; /* White text for contrast */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#start-button:hover {
+    background-color: #388e3c; /* Slightly darker green on hover */
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     #chat-box {
