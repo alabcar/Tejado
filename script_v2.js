@@ -117,7 +117,7 @@ function startInfiniteChat() {
 
         // Ensure only four messages are displayed at a time
         const chatMessagesDisplayed = chatContent.querySelectorAll('p');
-        if (chatMessagesDisplayed.length > 3) {
+        if (chatMessagesDisplayed.length > 1) {
             chatContent.removeChild(chatMessagesDisplayed[0]);
         }
     }, 2000);
@@ -133,7 +133,7 @@ function assignRandomDrinks() {
 function showFriendDrink() {
     if (currentFriendIndex < assignedDrinks.length) {
         const { friend, drink } = assignedDrinks[currentFriendIndex];
-        gameContainer.innerHTML = `<h1>${friend}:</h1><p>${drink}</p>`;
+        gameContainer.innerHTML = `${friend}: ${drink}`;
         gameContainer.innerHTML += '<button id="next-button">Siguiente</button>';
 
         document.getElementById('next-button').addEventListener('click', () => {
