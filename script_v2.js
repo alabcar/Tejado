@@ -32,7 +32,7 @@ const gameState = {
 };
 
 const friends = ["Ana", "Lolina", "Xoana", "Laura", "Luigi", "Ángel", "Boque", "Alberto"];
-const drinks = ["Ron con cola", "Gintonic", "Cerveza", "Vino", "Jagger", "Chupito de tequila", "Pollo", "Agua con gas", "Tinto de verano"];
+const drinks = ["Ron con cola", "Gintonic", "Cerveza", "Vino", "Chupito de jagger", "Chupito de tequila", "Vermú", "Agua con gas", "Tinto de verano"];
 let assignedDrinks = [];
 let servedDrinks = [];
 let currentFriendIndex = 0;
